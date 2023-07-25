@@ -4,7 +4,7 @@ import Header from './components/Header'
 import TodoCard from './components/TodoCard'
 
 function App() {
-  const [todoLists, setTodoLists] = useState([])
+  const [todoLists, setTodoLists] = useState([{ id: 1, name: 'Shopping' }])
 
   function addNewTodoList() {
     const newTodoList = {
@@ -28,7 +28,9 @@ function App() {
       {
         // Render all the cards for each item in our list of todos
         todoLists.length > 0 ? (
-          todoLists.map(todoList => <TodoCard key={todoList.id} />)
+          todoLists.map(todoList => (
+            <TodoCard key={todoList.id} listName={todoList.name} />
+          ))
         ) : (
           <p>No todos!</p>
         )
