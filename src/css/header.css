@@ -1,0 +1,16 @@
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+header .task-counter {
+  color: #90afc5;
+  display: flex;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  justify-content: space-evenly;
+}
