@@ -8,22 +8,18 @@ function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
 
-  function addNewTask() {
+  function addNewList(listName) {
     if (!modal) return
 
     const newTodoList = {
       id: Math.random(),
-      name: 'Shopping',
+      name: listName,
     }
 
     setTodoLists(prev => [...prev, newTodoList])
   }
 
-  const showModal = () => {
-    console.log(modal)
-
-    setModal(prev => !prev)
-  }
+  const showModal = () => setModal(prev => !prev)
 
   return (
     <>
@@ -32,7 +28,7 @@ function App() {
         <button onClick={showModal} className="add-new-list">
           +
         </button>
-        {/* {modal && <Modal addNewTask={addNewTask} />} */}
+        {modal && <Modal addNewList={addNewList} />}
 
         {todoLists?.length ? (
           todoLists.map(todoList => (

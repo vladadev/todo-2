@@ -5,7 +5,9 @@ const Modal = props => {
   const [inputListName, setInputListName] = useState('')
 
   const handleInputChange = event => {
-    // console.log(event.target.value) // TODO: add validation for input field and submit button click to
+    let inputValue = event.target.value
+
+    setInputListName(inputValue)
   }
 
   return (
@@ -16,8 +18,9 @@ const Modal = props => {
         type="text"
         name="list-name"
         id="list-name"
+        value={inputListName}
       />
-      <button onClick={props.addNewTask()}>Add</button>
+      <button onClick={() => props.addNewList(inputListName)}>Add</button>
     </div>
   )
 }
