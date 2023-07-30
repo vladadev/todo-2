@@ -20,7 +20,9 @@ const Modal = props => {
         id="list-name"
         value={inputListName}
       />
-      <button onClick={() => props.addNewList(inputListName)}>Add</button>
+      <button onClick={() => props.addNewList(inputListName, setInputListName)}>
+        Add
+      </button>
     </div>
   )
 }

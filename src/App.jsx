@@ -8,7 +8,7 @@ function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
 
-  function addNewList(listName) {
+  function addNewList(listName, setInputListName) {
     if (!modal) return
 
     const newTodoList = {
@@ -17,6 +17,8 @@ function App() {
     }
 
     setTodoLists(prev => [...prev, newTodoList])
+    setInputListName('')
+    setModal(prev => !prev)
   }
 
   const showModal = () => setModal(prev => !prev)
