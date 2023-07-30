@@ -9,7 +9,12 @@ function App() {
   const [modal, setModal] = useState(false)
 
   function addNewList(listName, setInputListName) {
+    // Check if modal is active
     if (!modal) return
+
+    // Check if input data is allright
+    if (!listName || typeof listName !== 'string')
+      return alert('Please enter a valid list name')
 
     const newTodoList = {
       id: Math.random(),
