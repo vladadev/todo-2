@@ -26,15 +26,18 @@ function App() {
     setModal(prev => !prev)
   }
 
-  const showModal = () => setModal(prev => !prev)
+  const showModal = () => {
+    setModal(prev => !prev)
+  }
 
   return (
     <>
       <div className="container">
         <Header />
         <button onClick={showModal} className="add-new-list">
-          +
+          {modal ? '-' : '+'}
         </button>
+
         {modal && <Modal addNewList={addNewList} />}
 
         {todoLists?.length ? (
