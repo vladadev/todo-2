@@ -12,53 +12,70 @@ const TodoList = props => {
   const [tasks, setTasks] = useState([
     // { id: Math.random(), name: 'I need to do groceries today!' },
   ])
+  const [isCardOptionsVisible, setIsCardOptionsVisible] = useState(false)
+  const [isTasksVisible, setIsTasksVisible] = useState(false)
 
-  function toggleMoreOptions() {}
+  const toggleMoreOptions = () => setIsCardOptionsVisible(prev => !prev)
+
+  const toggleTasks = event => {
+    if (event.target.tagName === 'path' || event.target.tagName === 'svg')
+      return
+
+    setIsTasksVisible(prev => !prev)
+
+    console.log('Clicked toggle tasks...')
+  }
 
   return (
     <div className="todo-card">
-      <h3 className="card-headding">{props.listName}</h3>
-      <span className="card-task-counter">"N" Tasks</span>
-      <FontAwesomeIcon
-        className="card-plus"
-        icon={faSquarePlus}
-        style={{ color: '#ffffff' }}
-      />
-
-      <div className="card-options">
+      <div className="todo-list" onClick={toggleTasks}>
+        <h3 className="card-headding">{props.listName}</h3>
+        <span className="card-task-counter">"N" Tasks</span>
         <FontAwesomeIcon
-          onClick={toggleMoreOptions}
-          className="card-dots"
-          icon={faEllipsis}
+          className="card-plus"
+          icon={faSquarePlus}
           style={{ color: '#ffffff' }}
-          size="xl"
         />
-        <div className="card-manage-toggle">
+
+        <div className="card-options">
           <FontAwesomeIcon
-            className="card-edit"
-            icon={faPencil}
+            onClick={toggleMoreOptions}
+            className="card-dots"
+            icon={faEllipsis}
             style={{ color: '#ffffff' }}
+            size="xl"
           />
-          <FontAwesomeIcon
-            className="card-delete"
-            icon={faTrashCan}
-            style={{ color: '#ffffff' }}
-          />
+          {isCardOptionsVisible && (
+            <div className="card-options-toggle">
+              <FontAwesomeIcon
+                className="card-edit"
+                icon={faPencil}
+                style={{ color: '#ffffff' }}
+              />
+              <FontAwesomeIcon
+                className="card-delete"
+                icon={faTrashCan}
+                style={{ color: '#ffffff' }}
+              />
+            </div>
+          )}
         </div>
       </div>
 
       {/* TODO: Add task list here */}
-      <ul className="todo-tasks">
-        {tasks?.length
-          ? tasks.map(task => {
-              return (
-                <li key={task.id}>
-                  <Task taskName={task.name} />
-                </li>
-              )
-            })
-          : 'No tasks in this list!'}
-      </ul>
+      {isTasksVisible && (
+        <ul className="todo-tasks">
+          {tasks?.length
+            ? tasks.map(task => {
+                return (
+                  <li key={task.id}>
+                    <Task taskName={task.name} />
+                  </li>
+                )
+              })
+            : 'No tasks in this list!'}
+        </ul>
+      )}
     </div>
   )
 }
