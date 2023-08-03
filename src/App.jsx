@@ -17,6 +17,7 @@ function App() {
     if (!listName || typeof listName !== 'string')
       return alert('Please enter a valid list name')
 
+    //TODO: Find solution for getting 'tasks' data
     const newTodoList = {
       id: ID,
       name: listName,
