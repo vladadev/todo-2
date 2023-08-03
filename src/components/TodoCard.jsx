@@ -10,7 +10,7 @@ import { faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 
 const TodoList = props => {
   const [tasks, setTasks] = useState([
-    // { id: Math.random(), name: 'I need to do groceries today!' },
+    { id: Math.random(), name: 'I need to do groceries today!' },
   ])
   const [isCardOptionsVisible, setIsCardOptionsVisible] = useState(false)
   const [isTasksVisible, setIsTasksVisible] = useState(false)

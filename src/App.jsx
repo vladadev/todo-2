@@ -7,6 +7,7 @@ import Modal from './components/Modal'
 function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
+  const ID = Math.random()
 
   function addNewList(listName, setInputListName) {
     // Check if modal is active
@@ -17,14 +18,23 @@ function App() {
       return alert('Please enter a valid list name')
 
     const newTodoList = {
-      id: Math.random(),
+      id: ID,
       name: listName,
+      tasks: {
+        taskId: ID,
+        description: 'Task description',
+        isDone: false,
+      },
     }
 
     setTodoLists(prev => [...prev, newTodoList])
     setInputListName('')
     setModal(prev => !prev)
   }
+
+  useEffect(() => {
+    console.log(todoLists)
+  }, [todoLists])
 
   const showModal = () => {
     setModal(prev => !prev)
