@@ -22,8 +22,10 @@ const TodoList = props => {
       return
 
     setIsTasksVisible(prev => !prev)
+  }
 
-    console.log('Clicked toggle tasks...')
+  const addTask = () => {
+    console.log('Clicke add task fn ...')
   }
 
   return (
@@ -35,6 +37,7 @@ const TodoList = props => {
           className="card-plus"
           icon={faSquarePlus}
           style={{ color: '#ffffff' }}
+          onClick={addTask}
         />
 
         <div className="card-options">
@@ -69,7 +72,12 @@ const TodoList = props => {
             ? tasks.map(task => {
                 return (
                   <li key={task.id}>
-                    <Task taskName={task.name} />
+                    <div className="todo-task">
+                      <input id={task.id} type="checkbox" name="r" value="2" />
+                      <label htmlFor={task.id}>
+                        <Task taskName={task.name} />
+                      </label>
+                    </div>
                   </li>
                 )
               })
