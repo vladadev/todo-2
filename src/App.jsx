@@ -3,11 +3,11 @@ import './css/main.css'
 import Header from './components/Header'
 import TodoCard from './components/TodoCard'
 import Modal from './components/Modal'
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
-  const ID = Math.random()
 
   function addNewList(listName, setInputListName) {
     // Check if modal is active
@@ -19,13 +19,9 @@ function App() {
 
     //TODO: Find solution for getting 'tasks' data
     const newTodoList = {
-      id: ID,
+      id: uuidv4(),
       name: listName,
-      tasks: {
-        taskId: ID,
-        description: 'Task description',
-        isDone: false,
-      },
+      tasks: [],
     }
 
     setTodoLists(prev => [...prev, newTodoList])
@@ -34,8 +30,10 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(todoLists)
-  }, [todoLists])
+    // console.log(todoLists)
+  }, [])
+
+  console.log(todoLists)
 
   const showModal = () => {
     setModal(prev => !prev)
@@ -53,7 +51,7 @@ function App() {
 
         {todoLists?.length ? (
           todoLists.map(todoList => (
-            <TodoCard key={todoList.id} listName={todoList.name} />
+            <TodoCard key={uuidv4()} listName={todoList.name} />
           ))
         ) : (
           <p>No todos!</p>
