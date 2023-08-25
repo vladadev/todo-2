@@ -29,14 +29,34 @@ function App() {
     setModal(prev => !prev)
   }
 
+  const addTasks = taskName => {
+    if (currentListId) {
+      const newList = todoLists.map(list => {
+        if (list.id === currentListId) {
+          return {
+            ...list,
+            tasks: [...list.tasks, taskName],
+          }
+        }
+
+        return list
+      })
+
+      setTodoLists(newList)
+    }
+  }
+
   useEffect(() => {
     // console.log(todoLists)
   }, [])
 
-  console.log(todoLists)
-
   const showModal = () => {
     setModal(prev => !prev)
+  }
+
+  const modalInfo = {
+    name: 'list',
+    purpose: addNewList,
   }
 
   return (
@@ -47,11 +67,16 @@ function App() {
           {modal ? '-' : '+'}
         </button>
 
-        {modal && <Modal addNewList={addNewList} />}
+        {modal && <Modal addNewList={addNewList} modalInfo={modalInfo} />}
 
         {todoLists?.length ? (
           todoLists.map(todoList => (
-            <TodoCard key={uuidv4()} listName={todoList.name} />
+            <TodoCard
+              key={uuidv4()}
+              listName={todoList.name}
+              listId={todoList.id}
+              addTasks={addTasks}
+            />
           ))
         ) : (
           <p>No todos!</p>

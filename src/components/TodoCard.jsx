@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import Task from './Task'
 import '../css/todo-card.css'
 
@@ -14,6 +14,7 @@ const TodoList = props => {
   ])
   const [isCardOptionsVisible, setIsCardOptionsVisible] = useState(false)
   const [isTasksVisible, setIsTasksVisible] = useState(false)
+  const [currentListId, setCurrentListId] = useState(null)
 
   const toggleMoreOptions = () => setIsCardOptionsVisible(prev => !prev)
 
@@ -22,11 +23,17 @@ const TodoList = props => {
       return
 
     setIsTasksVisible(prev => !prev)
+    setCurrentListId(props.listId)
+    console.log(currentListId)
   }
 
   const addTask = () => {
     console.log('Clicke add task fn ...')
   }
+
+  useEffect(() => {
+    setCurrentListId(props.listId)
+  }, [props.listId])
 
   return (
     <div className="todo-card">
