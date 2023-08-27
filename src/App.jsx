@@ -9,6 +9,12 @@ function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
 
+  const [inputListName, setInputListName] = useState('') // Moved this state to App.jsx
+
+  const handleInputChange = event => {
+    setInputListName(event.target.value)
+  }
+
   function addNewList(listName, setInputListName) {
     // Check if modal is active
     if (!modal) return
@@ -29,35 +35,31 @@ function App() {
     setModal(prev => !prev)
   }
 
-  const addTasks = taskName => {
-    if (currentListId) {
-      const newList = todoLists.map(list => {
-        if (list.id === currentListId) {
-          return {
-            ...list,
-            tasks: [...list.tasks, taskName],
-          }
-        }
+  // const addTasks = taskName => {
+  //   if (currentListId) {
+  //     const newList = todoLists.map(list => {
+  //       if (list.id === currentListId) {
+  //         return {
+  //           ...list,
+  //           tasks: [...list.tasks, taskName],
+  //         }
+  //       }
 
-        return list
-      })
+  //       return list
+  //     })
 
-      setTodoLists(newList)
-    }
-  }
-
-  useEffect(() => {
-    // console.log(todoLists)
-  }, [])
+  //     setTodoLists(newList)
+  //   }
+  // }
 
   const showModal = () => {
     setModal(prev => !prev)
   }
 
-  const modalInfo = {
-    name: 'list',
-    purpose: addNewList,
-  }
+  // const modalInfo = {
+  //   name: 'list',
+  //   purpose: addNewList,
+  // }
 
   return (
     <>
@@ -67,7 +69,17 @@ function App() {
           {modal ? '-' : '+'}
         </button>
 
-        {modal && <Modal addNewList={addNewList} modalInfo={modalInfo} />}
+        {modal && (
+          <Modal title="Add list name:" onConfirm={addNewList}>
+            <input
+              onChange={handleInputChange}
+              type="text"
+              name="list-name"
+              id="list-name"
+              value={inputListName}
+            />
+          </Modal>
+        )}
 
         {todoLists?.length ? (
           todoLists.map(todoList => (
