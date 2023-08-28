@@ -20,15 +20,15 @@ function App() {
     if (!modal) return
 
     // Check if input data is allright
-    if (!listName || typeof listName !== 'string')
-      return alert('Please enter a valid list name')
+    // if (!listName || typeof listName !== 'string')
+    //   return alert('Please enter a valid list name')
 
     //TODO: Find solution for getting 'tasks' data
-    const newTodoList = {
-      id: uuidv4(),
-      name: listName,
-      tasks: [],
-    }
+    // const newTodoList = {
+    //   id: uuidv4(),
+    //   name: listName,
+    //   tasks: [],
+    // }
 
     setTodoLists(prev => [...prev, newTodoList])
     setInputListName('')
