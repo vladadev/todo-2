@@ -31,31 +31,9 @@ function App() {
     setModal(prev => !prev)
   }
 
-  // const addTasks = taskName => {
-  //   if (currentListId) {
-  //     const newList = todoLists.map(list => {
-  //       if (list.id === currentListId) {
-  //         return {
-  //           ...list,
-  //           tasks: [...list.tasks, taskName],
-  //         }
-  //       }
-
-  //       return list
-  //     })
-
-  //     setTodoLists(newList)
-  //   }
-  // }
-
   const showModal = () => {
     setModal(prev => !prev)
   }
-
-  // const modalInfo = {
-  //   name: 'list',
-  //   purpose: addNewList,
-  // }
 
   return (
     <>
