@@ -1,4 +1,4 @@
-export const valdateListName = listName => {
+export const validateListName = listName => {
   if (!listName) {
     return {
       isValid: false,

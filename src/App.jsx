@@ -6,31 +6,37 @@ import Modal from './components/Modal'
 
 import { validateListName } from './utils/validationUtils'
 
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4, validate } from 'uuid'
 
 function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
 
-  const [inputListName, setInputListName] = useState('') // Moved this state to App.jsx
+  const [userInput, setUserInput] = useState('') // Moved this state to App.jsx
 
   const handleInputChange = event => {
-    setInputListName(event.target.value)
+    setUserInput(event.target.value)
   }
+
+  console.log(validateListName('This is some list name!'))
 
   function addNewList() {
     // Check if modal is active
     if (!modal) return
 
+    // Validate user input
+    const userValidationObj = validateListName(userInput)
+    if (!userValidationObj.isValid) return alert(userValidationObj.error)
+
     //TODO: Find solution for getting 'tasks' data
     const newTodoList = {
       id: uuidv4(),
-      name: inputListName,
+      name: userInput,
       tasks: [],
     }
 
     setTodoLists(prev => [...prev, newTodoList])
-    setInputListName('')
+    setUserInput('')
     setModal(prev => !prev)
   }
 
@@ -53,7 +59,7 @@ function App() {
               type="text"
               name="list-name"
               id="list-name"
-              value={inputListName}
+              value={userInput}
             />
           </Modal>
         )}
