@@ -3,6 +3,9 @@ import './css/main.css'
 import Header from './components/Header'
 import TodoCard from './components/TodoCard'
 import Modal from './components/Modal'
+
+import { validateListName } from './utils/validationUtils'
+
 import { v4 as uuidv4 } from 'uuid'
 
 function App() {
