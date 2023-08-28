@@ -22,7 +22,7 @@ function App() {
     //TODO: Find solution for getting 'tasks' data
     const newTodoList = {
       id: uuidv4(),
-      name: listName,
+      name: inputListName,
       tasks: [],
     }
 
@@ -61,7 +61,7 @@ function App() {
               key={uuidv4()}
               listName={todoList.name}
               listId={todoList.id}
-              addTasks={addTasks}
+              // addTasks={addTasks}
             />
           ))
         ) : (
