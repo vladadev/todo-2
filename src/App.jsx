@@ -4,6 +4,7 @@ import Header from './components/Header'
 import TodoCard from './components/TodoCard'
 import Modal from './components/Modal'
 
+import useValidation from './utils/hooks/useValidation'
 import { validateListName } from './utils/validationUtils'
 
 import { v4 as uuidv4, validate } from 'uuid'
@@ -13,6 +14,12 @@ function App() {
   const [modal, setModal] = useState(false)
 
   const [userInput, setUserInput] = useState('') // Moved this state to App.jsx
+
+  // Use of validation custom hook
+  const [usrInput, setUsrInput, inputError] = useValidation(
+    '',
+    validateListName
+  )
 
   const handleInputChange = event => {
     setUserInput(event.target.value)
