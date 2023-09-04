@@ -4,7 +4,7 @@ export const validateListName = listName => {
       isValid: false,
       error: 'List name can not be empty!',
     }
-  } else if (listName.length) {
+  } else if (listName.length < 3) {
     return {
       isValid: false,
       error: 'List name should be at least 3 charaters!',
