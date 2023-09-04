@@ -13,10 +13,8 @@ function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
 
-  const [userInput, setUserInput] = useState('') // Moved this state to App.jsx
-
   // Use of validation custom hook
-  const [usrInput, setUsrInput, inputError] = useValidation(
+  const [userInput, setUserInput, inputError] = useValidation(
     '',
     validateListName
   )
@@ -32,8 +30,7 @@ function App() {
     if (!modal) return
 
     // Validate user input
-    const userValidationObj = validateListName(userInput)
-    if (!userValidationObj.isValid) return alert(userValidationObj.error)
+    if (inputError) return alert(inputError)
 
     //TODO: Find solution for getting 'tasks' data
     const newTodoList = {
