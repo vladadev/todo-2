@@ -19,12 +19,6 @@ function App() {
     validateListName
   )
 
-  const handleInputChange = event => {
-    setUserInput(event.target.value)
-  }
-
-  console.log(validateListName('This is some list name!'))
-
   function addNewList() {
     // Check if modal is active
     if (!modal) return
@@ -42,6 +36,19 @@ function App() {
     setTodoLists(prev => [...prev, newTodoList])
     setUserInput('')
     setModal(prev => !prev)
+  }
+
+  // Function to add a new task
+  const addNewTask = (listId, newTask) => {
+    setTodoLists(prev =>
+      prev.map(list =>
+        list.id === listId ? { ...list, tasks: [...list.tasks, newTask] } : list
+      )
+    )
+  }
+
+  const handleInputChange = event => {
+    setUserInput(event.target.value)
   }
 
   const showModal = () => {
@@ -74,7 +81,7 @@ function App() {
               key={uuidv4()}
               listName={todoList.name}
               listId={todoList.id}
-              // addTasks={addTasks}
+              tasks={todoList.tasks}
             />
           ))
         ) : (

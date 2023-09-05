@@ -15,7 +15,7 @@ const TodoList = props => {
   const [isCardOptionsVisible, setIsCardOptionsVisible] = useState(false)
   const [isTasksVisible, setIsTasksVisible] = useState(false)
   const [currentListId, setCurrentListId] = useState(null)
-
+  console.log(props)
   const toggleMoreOptions = () => setIsCardOptionsVisible(prev => !prev)
 
   const toggleTasks = event => {
@@ -24,7 +24,6 @@ const TodoList = props => {
 
     setIsTasksVisible(prev => !prev)
     setCurrentListId(props.listId)
-    console.log(currentListId)
   }
 
   const addTask = () => {
