@@ -12,6 +12,8 @@ import { v4 as uuidv4, validate } from 'uuid'
 function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
+  // New state to track the current action
+  const [currentAction, setCurrentAction] = useState(null)
 
   // Use of validation custom hook
   const [userInput, setUserInput, inputError] = useValidation(
@@ -26,7 +28,6 @@ function App() {
     // Validate user input
     if (inputError) return alert(inputError)
 
-    //TODO: Find solution for getting 'tasks' data
     const newTodoList = {
       id: uuidv4(),
       name: userInput,
@@ -36,15 +37,36 @@ function App() {
     setTodoLists(prev => [...prev, newTodoList])
     setUserInput('')
     setModal(prev => !prev)
+
+    // Reset the current action
+    setCurrentAction(null)
   }
 
   // Function to add a new task
   const addNewTask = (listId, newTask) => {
+    // CONTINUE HERE, next object is buggy
+    // const newTask = {
+    //   id: uuidv4(),
+    //   // name: taskName,
+    // }
+
     setTodoLists(prev =>
       prev.map(list =>
         list.id === listId ? { ...list, tasks: [...list.tasks, newTask] } : list
       )
     )
+
+    setModal(false)
+    // Reset the current action
+    setCurrentAction(null)
+  }
+
+  const handleModalConfirm = () => {
+    if (currentAction === 'addList') {
+      addNewList()
+    } else if (currentAction === 'addTask') {
+      addNewTask(currentListId, userInput)
+    }
   }
 
   const handleInputChange = event => {
