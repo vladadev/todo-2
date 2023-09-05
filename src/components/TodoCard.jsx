@@ -8,6 +8,8 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 
+import { v4 as uuidv4, validate } from 'uuid'
+
 const TodoList = props => {
   const [tasks, setTasks] = useState([
     { id: Math.random(), name: 'I need to do groceries today!' },
@@ -27,7 +29,14 @@ const TodoList = props => {
   }
 
   const addTask = () => {
-    console.log('Clicke add task fn ...')
+    console.log('Clicked add task fn ...')
+
+    const newTask = {
+      id: uuidv4(),
+      name: 'New Task',
+    }
+
+    props.addNewTask(props.listId, newTask)
   }
 
   useEffect(() => {

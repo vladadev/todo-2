@@ -82,6 +82,7 @@ function App() {
               listName={todoList.name}
               listId={todoList.id}
               tasks={todoList.tasks}
+              addNewTask={addNewTask}
             />
           ))
         ) : (
