@@ -78,7 +78,7 @@ function App() {
         {todoLists?.length ? (
           todoLists.map(todoList => (
             <TodoCard
-              key={uuidv4()}
+              key={todoList.id}
               listName={todoList.name}
               listId={todoList.id}
               tasks={todoList.tasks}
