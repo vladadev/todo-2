@@ -10,14 +10,21 @@ import { faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 
 import { v4 as uuidv4, validate } from 'uuid'
 
-const TodoList = props => {
+// PROPS
+// key={todoList.id}
+// listName={todoList.name}
+// listId={todoList.id}
+// tasks={todoList.tasks}
+// addNewTask={addNewTask}
+
+const TodoCard = props => {
   const [tasks, setTasks] = useState([
     { id: Math.random(), name: 'I need to do groceries today!' },
   ])
   const [isCardOptionsVisible, setIsCardOptionsVisible] = useState(false)
   const [isTasksVisible, setIsTasksVisible] = useState(false)
   const [currentListId, setCurrentListId] = useState(null)
-  console.log(props)
+
   const toggleMoreOptions = () => setIsCardOptionsVisible(prev => !prev)
 
   const toggleTasks = event => {
@@ -103,4 +110,4 @@ const TodoList = props => {
   )
 }
 
-export default TodoList
+export default TodoCard
