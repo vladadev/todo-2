@@ -77,6 +77,12 @@ function App() {
     setUserInput(event.target.value)
   }
 
+  // Modal Fn-s
+  const showAddListModal = () => {
+    setCurrentAction('addList') // Set the current action to 'addList'
+    showModal() // Show the modal
+  }
+
   const showModal = () => {
     setModal(prev => !prev)
   }
@@ -85,7 +91,7 @@ function App() {
     <>
       <div className="container">
         <Header />
-        <button onClick={showModal} className="add-new-list">
+        <button onClick={showAddListModal} className="add-new-list">
           {modal ? '-' : '+'}
         </button>
 
