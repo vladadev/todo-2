@@ -12,8 +12,9 @@ import { v4 as uuidv4, validate } from 'uuid'
 function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
-  // New state to track the current action
-  const [currentAction, setCurrentAction] = useState(null)
+
+  const [currentAction, setCurrentAction] = useState(null) // New state to track the current action
+  const [currentListId, setCurrentListId] = useState(null) // State to keep track of the current list ID
 
   // Use of validation custom hook
   const [userInput, setUserInput, inputError] = useValidation(
@@ -34,12 +35,14 @@ function App() {
       tasks: [],
     }
 
+    console.log("we're here")
+    setCurrentAction('addList')
     setTodoLists(prev => [...prev, newTodoList])
     setUserInput('')
     setModal(prev => !prev)
 
     // Reset the current action
-    setCurrentAction(null)
+    // setCurrentAction(null)
   }
 
   // Function to add a new task
@@ -62,6 +65,7 @@ function App() {
   }
 
   const handleModalConfirm = () => {
+    console.log(currentAction)
     if (currentAction === 'addList') {
       addNewList()
     } else if (currentAction === 'addTask') {
@@ -86,7 +90,7 @@ function App() {
         </button>
 
         {modal && (
-          <Modal title="Add list name:" onConfirm={addNewList}>
+          <Modal title="Add list name:" onConfirm={handleModalConfirm}>
             <input
               onChange={handleInputChange}
               type="text"
@@ -104,7 +108,10 @@ function App() {
               listName={todoList.name}
               listId={todoList.id}
               tasks={todoList.tasks}
-              addNewTask={addNewTask}
+              // addNewTask={addNewTask}
+              showModal={showModal}
+              setCurrentListId={setCurrentListId}
+              setCurrentAction={setCurrentAction}
             />
           ))
         ) : (
