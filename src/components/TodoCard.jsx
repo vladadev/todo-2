@@ -35,10 +35,12 @@ const TodoCard = props => {
     setCurrentListId(props.listId)
   }
 
+  console.log(props)
+
   const addTask = () => {
     console.log('Clicked add task fn ...')
 
-    props.showModal() // Show the modal
+    props.toggleModal() // Show the modal
     props.setCurrentListId(props.listId) // Set the current list ID
     props.setCurrentAction('addTask') // Set the current action to 'addTask'
 

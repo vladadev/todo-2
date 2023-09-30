@@ -35,7 +35,6 @@ function App() {
       tasks: [],
     }
 
-    console.log("we're here")
     setCurrentAction('addList')
     setTodoLists(prev => [...prev, newTodoList])
     setUserInput('')
@@ -77,13 +76,10 @@ function App() {
     setUserInput(event.target.value)
   }
 
-  // Modal Fn-s
-  const showAddListModal = () => {
-    setCurrentAction('addList') // Set the current action to 'addList'
-    showModal() // Show the modal
-  }
-
-  const showModal = () => {
+  const toggleModal = (action = null) => {
+    if (action) {
+      setCurrentAction(action)
+    }
     setModal(prev => !prev)
   }
 
@@ -91,7 +87,7 @@ function App() {
     <>
       <div className="container">
         <Header />
-        <button onClick={showAddListModal} className="add-new-list">
+        <button onClick={() => toggleModal('addList')} className="add-new-list">
           {modal ? '-' : '+'}
         </button>
 
@@ -115,7 +111,7 @@ function App() {
               listId={todoList.id}
               tasks={todoList.tasks}
               // addNewTask={addNewTask}
-              showModal={showModal}
+              toggleModal={() => toggleModal('addTask')}
               setCurrentListId={setCurrentListId}
               setCurrentAction={setCurrentAction}
             />
