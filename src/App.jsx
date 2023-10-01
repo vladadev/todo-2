@@ -46,12 +46,6 @@ function App() {
 
   // Function to add a new task
   const addNewTask = (listId, newTask) => {
-    // CONTINUE HERE, next object is buggy
-    // const newTask = {
-    //   id: uuidv4(),
-    //   // name: taskName,
-    // }
-
     setTodoLists(prev =>
       prev.map(list =>
         list.id === listId ? { ...list, tasks: [...list.tasks, newTask] } : list
@@ -64,7 +58,6 @@ function App() {
   }
 
   const handleModalConfirm = () => {
-    console.log(currentAction)
     if (currentAction === 'addList') {
       addNewList()
     } else if (currentAction === 'addTask') {
@@ -92,12 +85,15 @@ function App() {
         </button>
 
         {modal && (
-          <Modal title="Add list name:" onConfirm={handleModalConfirm}>
+          <Modal
+            title={currentAction === 'addList' ? 'Add list name' : 'Add task'}
+            onConfirm={handleModalConfirm}
+          >
             <input
               onChange={handleInputChange}
               type="text"
-              name="list-name"
-              id="list-name"
+              name="task-name"
+              id="task-name"
               value={userInput}
             />
           </Modal>
@@ -111,6 +107,7 @@ function App() {
               listId={todoList.id}
               tasks={todoList.tasks}
               // addNewTask={addNewTask}
+              handleModalConfirm={handleModalConfirm}
               toggleModal={() => toggleModal('addTask')}
               setCurrentListId={setCurrentListId}
               setCurrentAction={setCurrentAction}

@@ -35,11 +35,8 @@ const TodoCard = props => {
     setCurrentListId(props.listId)
   }
 
-  console.log(props)
-
   const addTask = () => {
     console.log('Clicked add task fn ...')
-
     props.toggleModal() // Show the modal
     props.setCurrentListId(props.listId) // Set the current list ID
     props.setCurrentAction('addTask') // Set the current action to 'addTask'
@@ -49,7 +46,9 @@ const TodoCard = props => {
       name: 'New Task',
     }
 
-    props.addNewTask(props.listId, newTask)
+    setTasks(prev => {
+      return [...prev, newTask]
+    })
   }
 
   useEffect(() => {
@@ -65,7 +64,8 @@ const TodoCard = props => {
           className="card-plus"
           icon={faSquarePlus}
           style={{ color: '#ffffff' }}
-          onClick={addTask}
+          // onClick={addTask}
+          onClick={props.toggleModal}
         />
 
         <div className="card-options">
@@ -93,7 +93,6 @@ const TodoCard = props => {
         </div>
       </div>
 
-      {/* TODO: Add task list here */}
       {isTasksVisible && (
         <ul className="todo-tasks">
           {tasks?.length
