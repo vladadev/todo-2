@@ -23,6 +23,7 @@ function App() {
   )
 
   function addNewList() {
+    console.log('Adding new list ...')
     // Check if modal is active
     if (!modal) return
 
@@ -46,11 +47,14 @@ function App() {
 
   // Function to add a new task
   const addNewTask = (listId, newTask) => {
+    console.log('Adding new Task ...')
     setTodoLists(prev =>
       prev.map(list =>
         list.id === listId ? { ...list, tasks: [...list.tasks, newTask] } : list
       )
     )
+
+    console.log(todoLists)
 
     setModal(false)
     // Reset the current action
@@ -61,7 +65,11 @@ function App() {
     if (currentAction === 'addList') {
       addNewList()
     } else if (currentAction === 'addTask') {
-      addNewTask(currentListId, userInput)
+      const newTask = {
+        id: uuidv4(),
+        name: userInput,
+      }
+      addNewTask(currentListId, newTask)
     }
   }
 
