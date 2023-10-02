@@ -66,8 +66,8 @@ const TodoCard = props => {
 
       {isTasksVisible && (
         <ul className="todo-tasks">
-          {tasks?.length
-            ? tasks.map(task => {
+          {props.tasks?.length
+            ? props.tasks.map(task => {
                 return (
                   <li key={task.id}>
                     <div className="todo-task">
