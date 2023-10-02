@@ -8,15 +8,6 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 
-import { v4 as uuidv4, validate } from 'uuid'
-
-// PROPS
-// key={todoList.id}
-// listName={todoList.name}
-// listId={todoList.id}
-// tasks={todoList.tasks}
-// addNewTask={addNewTask}
-
 const TodoCard = props => {
   const [tasks, setTasks] = useState([
     { id: Math.random(), name: 'I need to do groceries today!' },
@@ -35,20 +26,10 @@ const TodoCard = props => {
     setCurrentListId(props.listId)
   }
 
-  const addTask = () => {
-    console.log('Clicked add task fn ...')
+  const prepareTask = () => {
     props.toggleModal() // Show the modal
     props.setCurrentListId(props.listId) // Set the current list ID
     props.setCurrentAction('addTask') // Set the current action to 'addTask'
-
-    const newTask = {
-      id: uuidv4(),
-      name: 'New Task',
-    }
-
-    setTasks(prev => {
-      return [...prev, newTask]
-    })
   }
 
   useEffect(() => {
@@ -64,8 +45,7 @@ const TodoCard = props => {
           className="card-plus"
           icon={faSquarePlus}
           style={{ color: '#ffffff' }}
-          // onClick={addTask}
-          onClick={props.toggleModal}
+          onClick={prepareTask}
         />
 
         <div className="card-options">
