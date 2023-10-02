@@ -59,11 +59,6 @@ function App() {
     setCurrentAction(null)
   }
 
-  // effect only for testing purposes!
-  useEffect(() => {
-    console.log(todoLists)
-  }, [todoLists])
-
   const handleModalConfirm = () => {
     if (currentAction === 'addList') {
       addNewList()
