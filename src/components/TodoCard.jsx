@@ -9,12 +9,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 
 const TodoCard = props => {
-  const [tasks, setTasks] = useState([
-    { id: Math.random(), name: 'I need to do groceries today!' },
-  ])
   const [isCardOptionsVisible, setIsCardOptionsVisible] = useState(false)
   const [isTasksVisible, setIsTasksVisible] = useState(false)
-  const [currentListId, setCurrentListId] = useState(null)
 
   const toggleMoreOptions = () => setIsCardOptionsVisible(prev => !prev)
 
@@ -23,7 +19,6 @@ const TodoCard = props => {
       return
 
     setIsTasksVisible(prev => !prev)
-    setCurrentListId(props.listId)
   }
 
   const prepareTask = () => {
@@ -31,10 +26,6 @@ const TodoCard = props => {
     props.setCurrentListId(props.listId) // Set the current list ID
     props.setCurrentAction('addTask') // Set the current action to 'addTask'
   }
-
-  useEffect(() => {
-    setCurrentListId(props.listId)
-  }, [props.listId])
 
   return (
     <div className="todo-card">
