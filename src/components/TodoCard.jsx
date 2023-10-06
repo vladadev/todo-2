@@ -76,6 +76,14 @@ const TodoCard = props => {
                         <Task taskName={task.name} />
                       </label>
                     </div>
+
+                    <div className="todo-task-delete">
+                      <FontAwesomeIcon
+                        className="task-delete"
+                        icon={faTrashCan}
+                        style={{ color: '#ffffff' }}
+                      />
+                    </div>
                   </li>
                 )
               })
