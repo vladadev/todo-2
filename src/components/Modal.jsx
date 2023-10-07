@@ -3,12 +3,22 @@ import '../css/modal.css'
 
 const Modal = ({ title, onConfirm, children }) => {
   return (
-    <div className="modal">
-      <label htmlFor="list-name">{title} </label>
+    <div className="modal-overlay">
+      <div className="modal-window">
+        <span
+          className="close-btn"
+          onClick={() => {
+            // Here we should call - props.onClose
+            console.log('Clicked X - closing modal')
+          }}
+        >
+          X
+        </span>
+        <label htmlFor="list-name">{title} </label>
+        {children}
 
-      {children}
-
-      <button onClick={onConfirm}>Add</button>
+        <button onClick={onConfirm}>Add</button>
+      </div>
     </div>
   )
 }
