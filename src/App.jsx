@@ -94,6 +94,7 @@ function App() {
           <Modal
             title={currentAction === 'addList' ? 'Add list name' : 'Add task'}
             onConfirm={handleModalConfirm}
+            toggle={toggleModal}
           >
             <input
               onChange={handleInputChange}
