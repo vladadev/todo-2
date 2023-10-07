@@ -12,6 +12,24 @@
   z-index: 1000;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 /* Modal Window */
 .modal-window {
   background-color: #2e2e2e;
@@ -21,6 +39,10 @@
   width: 80%;
   max-width: 500px;
   position: relative;
+
+  animation-name: fadeIn; /* Apply the fadeIn animation */
+  animation-duration: 0.2s; /* Duration of the animation */
+  animation-timing-function: ease-in-out; /* Smooth start and end */
 }
 
 /* Close Button */
