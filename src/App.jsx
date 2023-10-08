@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './css/main.css'
 import Header from './components/Header'
 import TodoCard from './components/TodoCard'
@@ -22,6 +22,12 @@ function App() {
     validateListName
   )
 
+  const focusInput = useRef()
+
+  useEffect(() => {
+    modal && focusInput.current.focus()
+  }, [modal])
+
   function addNewList() {
     console.log('Adding new list ...')
     // Check if modal is active
@@ -40,9 +46,6 @@ function App() {
     setTodoLists(prev => [...prev, newTodoList])
     setUserInput('')
     setModal(prev => !prev)
-
-    // Reset the current action
-    // setCurrentAction(null)
   }
 
   // Function to add a new task
@@ -97,6 +100,7 @@ function App() {
             toggle={toggleModal}
           >
             <input
+              ref={focusInput}
               onChange={handleInputChange}
               type="text"
               name="task-name"

@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import '../css/modal.css'
 
 const Modal = ({ title, onConfirm, toggle, children }) => {
