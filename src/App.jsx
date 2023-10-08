@@ -7,7 +7,7 @@ import Modal from './components/Modal'
 import useValidation from './utils/hooks/useValidation'
 import { validateListName } from './utils/validationUtils'
 
-import { v4 as uuidv4, validate } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [todoLists, setTodoLists] = useState([])
@@ -22,8 +22,8 @@ function App() {
     validateListName
   )
 
+  // Focus modal input - useRef
   const focusInput = useRef()
-
   useEffect(() => {
     modal && focusInput.current.focus()
   }, [modal])
@@ -57,9 +57,11 @@ function App() {
       )
     )
 
-    setModal(false)
     // Reset the current action
     setCurrentAction(null)
+
+    setModal(prev => !prev)
+    setUserInput('')
   }
 
   const handleModalConfirm = () => {
@@ -117,7 +119,6 @@ function App() {
               listName={todoList.name}
               listId={todoList.id}
               tasks={todoList.tasks}
-              // addNewTask={addNewTask}
               handleModalConfirm={handleModalConfirm}
               toggleModal={() => toggleModal('addTask')}
               setCurrentListId={setCurrentListId}
