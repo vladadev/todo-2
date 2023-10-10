@@ -1,7 +1,13 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import '../css/header.css'
 
-const Header = props => {
+const Header = ({ todoLists }) => {
+  console.log(todoLists)
+
+  const [numOfTasks, setNumOfTasks] = useState(0)
+
+  useEffect(() => {}, [])
+
   return (
     <header>
       <h1>TO DO:</h1>

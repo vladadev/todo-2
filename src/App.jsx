@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid'
 function App() {
   const [todoLists, setTodoLists] = useState([])
   const [modal, setModal] = useState(false)
+  const [taskStatus, setTaskStatus] = useState(false)
 
   const [currentAction, setCurrentAction] = useState(null) // New state to track the current action
   const [currentListId, setCurrentListId] = useState(null) // State to keep track of the current list ID
@@ -71,6 +72,7 @@ function App() {
       const newTask = {
         id: uuidv4(),
         name: userInput,
+        isCompleted: taskStatus,
       }
       addNewTask(currentListId, newTask)
     }
@@ -87,10 +89,24 @@ function App() {
     setModal(prev => !prev)
   }
 
+  const isTaskCompleted = isCompleted => {
+    // console.log(isCompleted)
+    // setTaskStatus(isCompleted)
+
+    // OVDE STAO!
+    setTodoLists(prev => {
+      prev.map(list =>
+        currentListId === list.id
+          ? { ...list, tasks: [...list.tasks].map(task => task.isCompleted) }
+          : list
+      )
+    })
+  }
+
   return (
     <>
       <div className="container">
-        <Header />
+        <Header todoLists={todoLists} />
         <button onClick={() => toggleModal('addList')} className="add-new-list">
           {modal ? '-' : '+'}
         </button>
@@ -123,6 +139,7 @@ function App() {
               toggleModal={() => toggleModal('addTask')}
               setCurrentListId={setCurrentListId}
               setCurrentAction={setCurrentAction}
+              isTaskCompleted={isTaskCompleted}
             />
           ))
         ) : (

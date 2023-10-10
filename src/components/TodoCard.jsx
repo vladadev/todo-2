@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useRef } from 'react'
 import Task from './Task'
 import '../css/todo-card.css'
 
@@ -19,6 +19,12 @@ const TodoCard = props => {
       return
 
     setIsTasksVisible(prev => !prev)
+  }
+
+  const taskCheckbox = useRef()
+  const handleTaskCheckbox = () => {
+    // console.log(taskCheckbox.current.checked)
+    props.isTaskCompleted(taskCheckbox.current.checked)
   }
 
   const prepareTask = () => {
@@ -71,7 +77,15 @@ const TodoCard = props => {
                 return (
                   <li key={task.id}>
                     <div className="todo-task">
-                      <input id={task.id} type="checkbox" name="r" value="2" />
+                      {/* Checkbox that we need to listen to! */}
+                      <input
+                        ref={taskCheckbox}
+                        onChange={handleTaskCheckbox}
+                        id={task.id}
+                        type="checkbox"
+                        name="r"
+                        value="2"
+                      />
                       <label htmlFor={task.id}>
                         <Task taskName={task.name} />
                       </label>
