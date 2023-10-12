@@ -89,17 +89,20 @@ function App() {
     setModal(prev => !prev)
   }
 
-  const isTaskCompleted = isCompleted => {
-    // console.log(isCompleted)
-    // setTaskStatus(isCompleted)
-
-    // OVDE STAO!
+  const isTaskCompleted = (listId, taskId, isCompleted) => {
     setTodoLists(prev => {
-      prev.map(list =>
-        currentListId === list.id
-          ? { ...list, tasks: [...list.tasks].map(task => task.isCompleted) }
-          : list
-      )
+      return prev.map(list => {
+        if (list.id === listId) {
+          return {
+            ...list,
+            tasks: list.tasks.map(task =>
+              task.id === taskId ? { ...task, isCompleted: isCompleted } : task
+            ),
+          }
+        }
+
+        return list
+      })
     })
   }
 

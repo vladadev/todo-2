@@ -22,9 +22,8 @@ const TodoCard = props => {
   }
 
   const taskCheckbox = useRef()
-  const handleTaskCheckbox = () => {
-    // console.log(taskCheckbox.current.checked)
-    props.isTaskCompleted(taskCheckbox.current.checked)
+  const handleTaskCheckbox = taskId => {
+    props.isTaskCompleted(props.listId, taskId, taskCheckbox.current.checked)
   }
 
   const prepareTask = () => {
@@ -80,7 +79,7 @@ const TodoCard = props => {
                       {/* Checkbox that we need to listen to! */}
                       <input
                         ref={taskCheckbox}
-                        onChange={handleTaskCheckbox}
+                        onChange={() => handleTaskCheckbox(task.id)}
                         id={task.id}
                         type="checkbox"
                         name="r"
