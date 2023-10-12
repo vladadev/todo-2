@@ -1,4 +1,4 @@
-import { React, useState, useRef } from 'react'
+import { React, useState } from 'react'
 import Task from './Task'
 import '../css/todo-card.css'
 
@@ -21,7 +21,6 @@ const TodoCard = props => {
     setIsTasksVisible(prev => !prev)
   }
 
-  // const taskCheckbox = useRef()
   const handleTaskCheckbox = (taskId, isCompleted) => {
     props.isTaskCompleted(props.listId, taskId, isCompleted)
   }
@@ -77,7 +76,6 @@ const TodoCard = props => {
                   <li key={task.id}>
                     <div className="todo-task">
                       <input
-                        // ref={taskCheckbox}
                         onChange={e =>
                           handleTaskCheckbox(task.id, e.target.checked)
                         }
