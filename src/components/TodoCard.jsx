@@ -27,9 +27,9 @@ const TodoCard = props => {
   }
 
   const prepareTask = () => {
-    props.toggleModal() // Show the modal
-    props.setCurrentListId(props.listId) // Set the current list ID
-    props.setCurrentAction('addTask') // Set the current action to 'addTask'
+    props.toggleModal()
+    props.setCurrentListId(props.listId)
+    props.setCurrentAction('addTask')
   }
 
   return (
@@ -76,7 +76,6 @@ const TodoCard = props => {
                 return (
                   <li key={task.id}>
                     <div className="todo-task">
-                      {/* Checkbox that we need to listen to! */}
                       <input
                         ref={taskCheckbox}
                         onChange={() => handleTaskCheckbox(task.id)}
