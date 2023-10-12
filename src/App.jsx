@@ -138,6 +138,7 @@ function App() {
               listName={todoList.name}
               listId={todoList.id}
               tasks={todoList.tasks}
+              todoObj={todoLists}
               handleModalConfirm={handleModalConfirm}
               toggleModal={() => toggleModal('addTask')}
               setCurrentListId={setCurrentListId}

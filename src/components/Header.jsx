@@ -10,7 +10,7 @@ const Header = ({ todoLists }) => {
     <header>
       <h1>TO DO:</h1>
       <ul className="task-counter">
-        <li>Total tasks: 12</li>
+        <li>Total tasks: 0</li>
         <li>Completed: {completedTasks}</li>
       </ul>
     </header>

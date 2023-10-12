@@ -21,9 +21,9 @@ const TodoCard = props => {
     setIsTasksVisible(prev => !prev)
   }
 
-  const taskCheckbox = useRef()
-  const handleTaskCheckbox = taskId => {
-    props.isTaskCompleted(props.listId, taskId, taskCheckbox.current.checked)
+  // const taskCheckbox = useRef()
+  const handleTaskCheckbox = (taskId, isCompleted) => {
+    props.isTaskCompleted(props.listId, taskId, isCompleted)
   }
 
   const prepareTask = () => {
@@ -77,8 +77,11 @@ const TodoCard = props => {
                   <li key={task.id}>
                     <div className="todo-task">
                       <input
-                        ref={taskCheckbox}
-                        onChange={() => handleTaskCheckbox(task.id)}
+                        // ref={taskCheckbox}
+                        onChange={e =>
+                          handleTaskCheckbox(task.id, e.target.checked)
+                        }
+                        checked={task.isTaskCompleted}
                         id={task.id}
                         type="checkbox"
                         name="r"
